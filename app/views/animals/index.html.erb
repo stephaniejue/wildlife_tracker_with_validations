@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Animals</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      <div>
+        <%= render 'form' %>
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <table id="animal_list" class="table">
+        <thead>
+          <tr>
+            <th>Common name</th>
+            <th>Latin name</th>
+            <th>Kingdom</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @animals.each do |animal| %>
+            <tr>
+              <td><%= link_to animal.common_name, animal %></td>
+              <td><%= animal.latin_name %></td>
+              <td><%= animal.kingdom %></td>
+              <!-- <td><%= link_to 'Show', animal %></td> -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </row>
+</div>
+
+<br>
+
+<%= link_to 'New Animal', new_animal_path %> | <%= link_to 'Regions', regions_path %> | <%= link_to 'Sightings', sightings_path %>

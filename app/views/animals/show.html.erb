@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+  <%= link_to image_tag(@animal.image.url(:large)), @animal.image.url %>
+  <p>
+    <strong>Common name:</strong>
+    <%= @animal.common_name %>
+  </p>
+
+  <p>
+    <strong>Latin name:</strong>
+    <%= @animal.latin_name %>
+  </p>
+
+  <p>
+    <strong>Kingdom:</strong>
+    <%= @animal.kingdom %>
+  </p>
+  <%= link_to 'Edit', edit_animal_path(@animal) %> |
+  <%= link_to 'Destroy', @animal, method: :delete, data: { confirm: 'Are you sure?' } %>
+<br><br>
+<strong>Sighting(s):</strong><br><br>
+<table id="sighting_list" class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sightings.each do |sighting| %>
+      <tr>
+        <td><%= sighting.date.strftime("%m/%d/%Y %H:%M") %></td>
+        <td><%= sighting.longitude %></td>
+        <td><%= sighting.latitude %></td>
+        <td><%= sighting.region.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<div class="input_box">
+  <h3>Add Sighting:</h3>
+
+    <div class="field">
+      <%= datetime_select("sighting", "date") %>
+    </div>
+    <label for="sighting_latitude">Latitude</label><br>
+    <input id="sighting_latitude" type="text" name="sighting[latitude]" placeholder="Latitude" /><br><br>
+    <label for="sighting_longitude">Longitude</label><br>
+    <input id="sighting_longitude" type="text" name="sighting[longitude]" placeholder="Longitude" /><br><br>
+    <label for="region_id">Region</label><br>
+    <%= select(:sighting, :region_id, @regions_for_select) %>
+    <input id="animal_id" type="hidden" name="animal[id]" value="<%= @animal.id %>" /><br><br>
+    <button id="create_sighting" class="btn btn-info btn-sm">Create Sighting</button>
+  </br></br>
+</div>
+
+<%= link_to 'Back', animals_path %>
