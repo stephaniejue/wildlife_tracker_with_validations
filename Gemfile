@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
-gem 'paperclip'
+gem 'paperclip', '~> 5.2.0'
 gem 'textacular'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
